@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Interactive LED Clock</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #818181;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(64, 1fr);
+      grid-template-rows: repeat(32, 1fr);
+      gap: 1px;
+      background-color: #af8787;
+      width: 80vw;
+      height: 80vh;
+    }
+
+    .cell {
+      background-color: #860000;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+
+  <script src="index.js"></script>
+
+</head>
+<body>
+  <div class="buttons">
+    <button class="button">Send</button>
+    <button class="button">Reset</button>
+  </div>
+
+
+
+  <div class="grid" id="grid">
+    <!-- Grid cells will be dynamically added here -->
+  </div>
+</body>
+</html>
