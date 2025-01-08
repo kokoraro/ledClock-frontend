@@ -13,9 +13,6 @@ function createGrid(rows, columns) {
 
   // Create rows and columns
   for (let i = 0; i < rows; i++) {
-    // const row = document.createElement('div');
-    // row.classList.add('row');
-
     for (let j = 0; j < columns; j++) {
       const cell = document.createElement('div');
       cell.classList.add('cell');
@@ -29,7 +26,5 @@ function createGrid(rows, columns) {
       // row.appendChild(cell);
       gridElement.appendChild(cell);
     }
-
-    // gridElement.appendChild(row);
   }
 }
