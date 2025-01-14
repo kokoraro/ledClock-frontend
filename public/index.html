@@ -52,12 +52,26 @@
       background-color: #4CAF50;
     }
 
+    .color-button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+
   </style>
 
-  <script src="index.js"></script>
+  <script src="index.js", type="module"></script>
 
 </head>
 <body>
+
+  
+  <!-- A coloured square to represent the currently selected colour -->
+  <div id="selected-colour-box" style="width: 100px; height: 100px; background-color: #FFFFFF;"></div>
+
   <div class="buttons">
     <button class="button" id="send">Send</button>
     <button class="button" id="reset">Reset</button>
@@ -66,5 +80,20 @@
   <div class="grid" id="grid">
     <!-- Grid cells will be dynamically added here -->
   </div>
+
+  <div class="color-buttons">
+    <button class="color-button" data-color="#FFFFFF"></button>
+    <button class="color-button" data-color="#FF0000"></button>
+    <button class="color-button" data-color="#0000FF"></button>
+    <button class="color-button" data-color="#00FF00"></button>
+    <button class="color-button" data-color="#FFFF00"></button>
+    <button class="color-button" data-color="#FFA500"></button>
+    <button class="color-button" data-color="#800080"></button>
+    <button class="color-button" data-color="#FFC0CB"></button>
+    <button class="color-button" data-color="#00FFFF"></button>
+    <button class="color-button" data-color="#000000"></button>
+  </div>
+
+  
 </body>
 </html>
