@@ -1,7 +1,7 @@
 
 // TODO: find a better way to do this
-// const led_server_url = 'http://192.168.86.247:8000';
-const led_server_url = 'http://localhost:8000';
+const led_server_url = 'http://192.168.86.247:8000';
+// const led_server_url = 'http://localhost:8000';
 
 
 // Converts a hex code value to a list of RGB values
