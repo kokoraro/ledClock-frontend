@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   const grid = document.getElementById('grid');
   grid.addEventListener('mousemove', onGridMouseMove);
 
+  // Load the matrix from local storage if it exists
+  loadMatrixLocal();
 });
 
 function onSendClick() {
@@ -146,19 +148,21 @@ function onGridMouseMove(event) {
   // check if the target is a cell
   if (!cell.classList.contains('cell')) return;
 
-  setCellColour(cell, current_colour);
+  setCellColour(cell, current_colour, true);
 }
 
-
-function setCellColour(cell, colour) {
+function setCellColour(cell, colour, save=false) {
   cell.setAttribute('data-colour', rgbToHex(colour));
   cell.style.backgroundColor = `rgb(${colour[0]}, ${colour[1]}, ${colour[2]})`;
+
+  if (save)
+    saveMatrixLocal();
 }
 
 // Handle individual cell click
 function onCellClick(x, y) {
   const cell = document.querySelector(`.cell[data-x="${x}"][data-y="${y}"]`);
-  setCellColour(cell, current_colour);
+  setCellColour(cell, current_colour, true);
 }
 
 // Handle reset button click
@@ -207,3 +211,30 @@ function onSaveClick() {
     });
 }
 
+// Save the current matrix to local storage
+function saveMatrixLocal() {
+  const cells = document.querySelectorAll('.cell');
+  const pixelData = [];
+  cells.forEach((cell) => {
+    const colour = hexToRgb(cell.getAttribute('data-colour'));
+    pixelData.push(colour);
+  });
+
+  console.log('Saving matrix to local storage...');
+  localStorage.setItem('matrix', JSON.stringify(pixelData));
+}
+
+// Load the current matrix from local storage
+function loadMatrixLocal() {
+  const pixelData = JSON.parse(localStorage.getItem('matrix'));
+  if (!pixelData) return;
+
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach((cell, index) => {
+    const colour = pixelData[index];
+
+    if (!colour) return;
+
+    setCellColour(cell, colour);
+  });
+}
