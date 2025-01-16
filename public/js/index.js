@@ -1,5 +1,4 @@
-import { hexToRgb, rgbToHex } from './utils.js';
-import { led_server_url } from './utils.js';
+import { hexToRgb, rgbToHex, led_server_url, saveMatrixLocal } from './utils.js';
 
 let selectedColourBox = null;
 let handling_send = false;
@@ -7,6 +6,7 @@ let handling_send = false;
 let current_colour = [255, 255, 255];
 let off_colour = [0, 0, 0];
 
+// Wait for DOM to load
 document.addEventListener('DOMContentLoaded', (event) => {
   console.log('DOM fully loaded and parsed');
 
@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
   loadMatrixLocal();
 });
 
+
+// Handle send button click
 function onSendClick() {
   if (handling_send) return;
   handling_send = true;
@@ -94,6 +96,7 @@ function onSendClick() {
     });
 }
 
+// Handle colour button click
 function onColourClick(event) {
   const colour = event.target.getAttribute('data-color');
 
@@ -137,7 +140,6 @@ function createGrid(rows, columns) {
   }
 }
 
-
 // Handle mouse move over grid
 function onGridMouseMove(event) {
   // check if mouse is held down, if so return
@@ -151,12 +153,13 @@ function onGridMouseMove(event) {
   setCellColour(cell, current_colour, true);
 }
 
+// Set the colour of a cell
 function setCellColour(cell, colour, save=false) {
   cell.setAttribute('data-colour', rgbToHex(colour));
   cell.style.backgroundColor = `rgb(${colour[0]}, ${colour[1]}, ${colour[2]})`;
 
   if (save)
-    saveMatrixLocal();
+    saveMatrixLocal(document);
 }
 
 // Handle individual cell click
@@ -209,19 +212,6 @@ function onSaveClick() {
     .catch((error) => {
       console.error('Error:', error);
     });
-}
-
-// Save the current matrix to local storage
-function saveMatrixLocal() {
-  const cells = document.querySelectorAll('.cell');
-  const pixelData = [];
-  cells.forEach((cell) => {
-    const colour = hexToRgb(cell.getAttribute('data-colour'));
-    pixelData.push(colour);
-  });
-
-  console.log('Saving matrix to local storage...');
-  localStorage.setItem('matrix', JSON.stringify(pixelData));
 }
 
 // Load the current matrix from local storage
