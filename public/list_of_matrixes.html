@@ -14,17 +14,56 @@
       border: 0;
       background-color: #818181;
       user-select: none;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
+    .matrix {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 50%;
+      /* height: 100%; */
+      /* overflow-y: scroll; */
+      background-color: white;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    .no-matrixes {
+      text-decoration: solid underline;
+      /* bold text */
+      font-weight: bold;
+      font-size: x-large;
+      margin-top: 30px;
+    }
 
     .matrix-list {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
+      max-width: 1200px;
+      min-width: 1000px;
       /* height: 100%; */
       /* overflow-y: scroll; */
+    }
+
+    .cell {
+      background-color: #860000;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(64, 1fr);
+      grid-template-rows: repeat(32, 1fr);
+      gap: 1px;
+      background-color: #af8787;
+      aspect-ratio: 16/9;
+      width: 100%;
     }
 
     .matrix-element {
@@ -32,13 +71,27 @@
       align-items: center;
       margin-bottom: 10px;
     }
+
     .matrix-name {
       flex-grow: 1;
-      margin-right: 10px;
+      text-decoration: underline;
     }
+
     .matrix-buttons {
       display: flex;
+      margin: 10px;
     }
+
+    .matrix-button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 15px;
+      border-color: black;
+      cursor: pointer;
+    }
+
     .matrix-buttons button {
       margin-right: 5px;
     }
@@ -74,14 +127,9 @@
     <!-- Matrix elements will be dynamically added here -->
   </div>
 
-  <!-- Add a WIP element here in bold characters and centered -->
-  <div style="text-align: center; font-weight: bold; margin-top: 20px;">
-    WIP
-  </div>
-
   <!-- Add version to bottom right corner of page -->
   <div style="position: fixed; bottom: 0; right: 0; margin: 10px;">
-    <p>Version 0.2.0</p>
+    <p>Version 0.3.0</p>
   </div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 
 // TODO: find a better way to do this
-const led_server_url = 'http://192.168.86.247:8000';
-// const led_server_url = 'http://localhost:8000';
+// const led_server_url = 'http://192.168.86.247:8000';
+const led_server_url = 'http://localhost:8000';
 
 
 // Converts a hex code value to a list of RGB values
@@ -24,4 +24,18 @@ function rgbToHex(rgb) {
   // END: rgbToHex
 }
 
-export { hexToRgb, rgbToHex, led_server_url };
+
+// Save the current matrix to local storage
+function saveMatrixLocal(gridElement) {
+  const cells = gridElement.querySelectorAll('.cell');
+  const pixelData = [];
+  cells.forEach((cell) => {
+    const colour = hexToRgb(cell.getAttribute('data-colour'));
+    pixelData.push(colour);
+  });
+
+  console.log('Saving matrix to local storage...');
+  localStorage.setItem('matrix', JSON.stringify(pixelData));
+}
+
+export { hexToRgb, rgbToHex, led_server_url, saveMatrixLocal };
