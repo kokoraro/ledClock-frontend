@@ -6,12 +6,15 @@
     body {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      /* justify-content: center; */
       align-items: center;
       height: 100vh;
       margin: 0;
+      padding: 0;
+      border: 0;
       background-color: #818181;
       user-select: none;
+      overflow: hidden;
     }
 
     .grid {
@@ -21,8 +24,7 @@
       gap: 1px;
       background-color: #af8787;
       aspect-ratio: 16/9;
-      width: 75vw;
-      max-width: 1200px;
+      width: 100%;
     }
 
     .cell {
@@ -34,8 +36,9 @@
 
     .buttons {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       margin-bottom: 20px;
+      width: 100%;
     }
 
     .button {
@@ -43,42 +46,103 @@
       padding: 10px 20px;
       background-color: #4CAF50;
       color: white;
-      border: none;
-      border-radius: 4px;
+      border-radius: 15px;
+      border-color: black;
       cursor: pointer;
     }
 
-    .active {
-      background-color: #4CAF50;
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 75vw;
+      max-width: 1200px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #333;
+      padding: 10px;
+      color: white;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .navbar-item {
+      text-decoration: none;
+      color: white;
+      margin-right: 10px;
+    }
+
+    .colour-box {
+      margin: 20px;
+      min-width: 100px;
+      width: 100px;
+      height: 100px;
+      min-height: 100px;
+      background-color: #FFFFFF;
+      border-color: black;
+      border-radius: 20px;
+    }
+
+    .color-buttons {
+      display: flex;
+      align-items: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .color-button {
+      position: relative;
       margin: 0 10px;
       padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
+      border-radius: 10px;
+      border-color: black;
+      cursor: pointer;
+      min-width: 70px;
+      min-height: 50px;
+    }
+
+    .color-picker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
       cursor: pointer;
     }
 
-
   </style>
-
-  <script src="index.js", type="module"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="js/index.js" type="module"></script>
 
 </head>
 <body>
-
-  
-  <!-- A coloured square to represent the currently selected colour -->
-  <div id="selected-colour-box" style="width: 100px; height: 100px; background-color: #FFFFFF;"></div>
-
-  <div class="buttons">
-    <button class="button" id="send">Send</button>
-    <button class="button" id="reset">Reset</button>
+  <div class="navbar">
+    <a class="navbar-item" href="index.html">Home</a>
+    <a class="navbar-item" href="list_of_matrixes.html">List</a>
   </div>
 
-  <div class="grid" id="grid">
+  <!-- A coloured square to represent the currently selected colour -->
+  <div class="colour-box" id="selected-colour-box"></div>
+
+  <div class="grid-container">
+    <div class="buttons">
+      <div>
+        <button class="button" id="reset" title="Clear the drawing space"><i class="fas fa-trash"></i></button>
+        <button class="button" id="save" title="Save the drawing onto the device"><i class="fas fa-save"></i></button>
+      </div>
+      <div>
+        <button class="button" id="send" title="Display the drawing on the device"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+
+    <div class="grid" id="grid"></div>
     <!-- Grid cells will be dynamically added here -->
+    </div>
   </div>
 
   <div class="color-buttons">
@@ -92,8 +156,15 @@
     <button class="color-button" data-color="#FFC0CB"></button>
     <button class="color-button" data-color="#00FFFF"></button>
     <button class="color-button" data-color="#000000"></button>
+    <button class="color-button" data-color="#ff0ad2">
+      <input class="color-picker" type="color" id="colorpicker" value="#ff0ad2">
+      <i class="fas fa-edit"></i>
+    </button>
   </div>
 
-  
+  <!-- Add version to bottom right corner of page -->
+  <div style="position: fixed; bottom: 0; right: 0; margin: 10px;">
+    <p>Version 0.2.0</p>
+  </div>
 </body>
 </html>
