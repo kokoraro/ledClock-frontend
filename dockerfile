@@ -20,6 +20,9 @@ RUN mkdir build
 # Build the TypeScript code
 RUN npm run build
 
+# Copy views folder into build
+COPY ./src/views ./build/views
+
 # Expose the port on which the application will run
 EXPOSE 3000
 
