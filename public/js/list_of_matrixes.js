@@ -144,12 +144,15 @@ function onDeleteClick() {
     .then((response) => response.json())
     .then((data) => {
       console.log('Success:', data);
+
+      // Delete all matrixes from page
+      const matrixesElement = document.getElementById('matrix-list');
+      matrixesElement.innerHTML = '';
+
+      // Reload matrixes
       loadMatrixes();
     })
     .catch((error) => {
       console.error('Error:', error);
     });
-
-    // Reload the page
-    location.reload();
 }
