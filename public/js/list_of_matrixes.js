@@ -128,12 +128,16 @@ function onSendClick() {
 }
 
 function onDeleteClick() {
+  // show confirmation prompt to user
+  if (!confirm('Are you sure you want to delete this matrix?')) {
+    return;
+  }
+
   // Send request to server to delete matrix
   const matrixName = this.parentElement.parentElement.getAttribute('data-id');
   fetch(`${led_server_url}/delete-matrix?timestamp=${matrixName}`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
       'access-control-allow-origin': '*',
     },
   })
