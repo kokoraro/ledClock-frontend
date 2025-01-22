@@ -1,0 +1,6 @@
+
+build:
+	docker build -t led-frontend .
+
+run:
+	docker run --rm -p 3000:3000 -e LED_SERVER_URL=http://192.168.86.247:8000 led-frontend
