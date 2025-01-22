@@ -14,6 +14,9 @@ app.use(cors({
   origin: '*'
 }));
 
+process.on('SIGTERM', process.exit);
+process.on('SIGINT', process.exit);
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
