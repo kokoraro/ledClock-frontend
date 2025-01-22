@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   // Add event listener for mouse move on grid
   const grid = document.getElementById('grid');
-  grid.addEventListener('mousemove', onGridMouseMove);
+  grid.addEventListener('pointermove', onGridMouseMove);
 
   // Load the matrix from local storage if it exists
   loadMatrixLocal();
@@ -142,10 +142,11 @@ function createGrid(rows, columns) {
 
 // Handle mouse move over grid
 function onGridMouseMove(event) {
-  // check if mouse is held down, if so return
+  // check if mouse is held down, if not, return
   if (!event.buttons) return;
 
-  const cell = event.target;
+  // Get cell from mouse position
+  const cell = document.elementFromPoint(event.clientX, event.clientY);
 
   // check if the target is a cell
   if (!cell.classList.contains('cell')) return;
