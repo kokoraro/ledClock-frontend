@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadMatrixes() {
   // Make a request to the server to get the list of matrixes
   // passing the page and limit parameters
+  const matrixesElement = document.getElementById('matrix-list');
+
   fetch(`${led_server_url}/get-matrixes?page=0&limit=10`)
     .then((response) => response.json())
     .then((data) => {
       const matrixes = data.matrixes;
-      const matrixesElement = document.getElementById('matrix-list');
-
       if (matrixes == undefined || matrixes.length === 0) {
         matrixesElement.innerHTML = '<div class="no-matrixes">No matrixes found</div>';
         return;
@@ -99,6 +99,8 @@ function loadMatrixes() {
     })
     .catch((error) => {
       console.error('Error:', error);
+      matrixesElement.innerHTML = '<div class="no-matrixes">Error getting matrixes...</div>';
+      return;
     });
 }
 
