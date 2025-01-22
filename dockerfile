@@ -1,11 +1,15 @@
 # Use the official Node.js image as the base image
-FROM node:20
+FROM node:20-alpine
+
+# Create a new user called docker
+RUN addgroup -S docker && adduser -S docker -G docker 
+USER docker
 
 # Set the working directory inside the container
 WORKDIR /app
 
 # Copy the package.json and package-lock.json files to the working directory
-COPY package*.json ./
+COPY --chown=docker:docker package*.json ./
 
 # Install the project dependencies
 RUN npm install
@@ -27,4 +31,4 @@ COPY ./src/views ./build/views
 EXPOSE 3000
 
 # Start the application
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["sh", "-c", "exec node build/server.js"]
