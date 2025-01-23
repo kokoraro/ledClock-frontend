@@ -116,15 +116,42 @@
       cursor: pointer;
     }
 
+    .list-page-button {
+      position: fixed;
+      top: 0;
+      right: 0;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 15px;
+      border-color: black;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .list-button-text {
+      text-decoration: none;
+      color: white;
+      font-style: normal;
+      font-weight: 600;
+      font-size: large;
+    }
+
+
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="js/index.js" type="module"></script>
 
 </head>
 <body>
-  <div class="navbar">
-    <a class="navbar-item" href="index.html">Home</a>
-    <a class="navbar-item" href="list_of_matrixes.html">List</a>
+
+  <!-- Button on the top right that directs to list page -->
+  <div>
+    <button class="list-page-button">
+      <!-- Remove hyperlink colour from link -->
+      <a class="list-button-text" href="list_of_matrixes.html">Saved Drawings</a>
+    </button>
   </div>
 
   <!-- A coloured square to represent the currently selected colour -->
