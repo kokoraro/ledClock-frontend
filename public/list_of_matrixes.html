@@ -113,14 +113,39 @@
       margin-right: 10px;
     }
 
+    .draw-page-button {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 15px;
+      border-color: black;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .draw-button-text {
+      text-decoration: none;
+      color: white;
+      font-style: normal;
+      font-weight: 600;
+      font-size: large;
+    }
+
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <script src="js/list_of_matrixes.js" type="module"></script>
 </head>
 <body>
-  <div class="navbar">
-    <a class="navbar-item" href="index.html">Home</a>
-    <a class="navbar-item" href="list_of_matrixes.html">List</a>
+  <!-- Button on the top left that directs to draw page -->
+  <div>
+    <button class="draw-page-button">
+      <!-- Remove hyperlink colour from link -->
+      <a class="draw-button-text" href="index.html">Draw</a>
+    </button>
   </div>
 
   <div class="matrix-list" id="matrix-list">
