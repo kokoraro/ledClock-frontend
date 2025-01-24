@@ -5,13 +5,16 @@ document.addEventListener('DOMContentLoaded', () => {
   loadMatrixes();
 });
 
+let currentPage = 0
+let pageLimit = 10
+
 
 function loadMatrixes() {
   // Make a request to the server to get the list of matrixes
   // passing the page and limit parameters
   const matrixesElement = document.getElementById('matrix-list');
 
-  fetch(`${led_server_url}/get-matrixes?page=0&limit=10`)
+  fetch(`${led_server_url}/get-matrixes?page=${currentPage}&limit=${pageLimit}`)
     .then((response) => response.json())
     .then((data) => {
       const matrixes = data.matrixes;
@@ -96,6 +99,30 @@ function loadMatrixes() {
         const deleteButton = matrixElement.querySelector('#delete-button');
         deleteButton.addEventListener('click', onDeleteClick);
       });
+
+      // Handle page numbers
+      const pageElement = document.getElementById('page-numbers');
+      pageElement.innerHTML = '';
+
+      // For each page number add a number button
+      for (let i = 0; i < data.pages; i++) {
+        const pageNumber = document.createElement('button');
+        pageNumber.classList.add('page-number');
+
+        // If the page is the current page, add the selected class
+        if (i === currentPage) {
+          pageNumber.classList.add('page-selected');
+        }
+
+        // Add the page number to the button
+        pageNumber.innerHTML = i + 1;
+        pageNumber.addEventListener('click', () => {
+          currentPage = i
+          loadMatrixes()
+        })
+
+        pageElement.appendChild(pageNumber);
+      }
     })
     .catch((error) => {
       console.error('Error:', error);
