@@ -45,6 +45,8 @@
       width: 100%;
       max-width: 1200px;
       min-width: 1000px;
+      /* margin: 30px; */
+      padding: 20px;
       /* height: 100%; */
       /* overflow-y: scroll; */
     }
@@ -124,15 +126,37 @@
       border-radius: 15px;
       border-color: black;
       cursor: pointer;
-      text-decoration: none;
-    }
-
-    .draw-button-text {
-      text-decoration: none;
-      color: white;
       font-style: normal;
       font-weight: 600;
       font-size: large;
+      text-decoration: none;
+    }
+
+    .draw-page-button-link {
+      text-decoration: none;
+      font-style: normal;
+      color: white;
+    }
+
+    .page-number {
+      margin: 30px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 15px;
+      border-color: black;
+      cursor: pointer;
+    }
+
+    .page-selected {
+      margin: 30px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 15px;
+      border-color: black;
+      cursor: pointer;
+      background-color: #333;
     }
 
   </style>
@@ -142,19 +166,23 @@
 <body>
   <!-- Button on the top left that directs to draw page -->
   <div>
-    <button class="draw-page-button">
-      <!-- Remove hyperlink colour from link -->
-      <a class="draw-button-text" href="index.html">Draw</a>
-    </button>
+    <a href="index.html" class="draw-page-button-link">
+      <button class="draw-page-button">Draw</button>
+    </a>
   </div>
 
   <div class="matrix-list" id="matrix-list">
     <!-- Matrix elements will be dynamically added here -->
   </div>
 
+  <!-- Page numbers -->
+  <div class="page-numbers" id="page-numbers">
+    <!-- Page numbers will be dynamically added here -->
+  </div>
+
   <!-- Add version to bottom right corner of page -->
   <div style="position: fixed; bottom: 0; right: 0; margin: 10px;">
-    <p><a href="changelog.html" style="color: lightskyblue; text-decoration: solid underline;">Version 0.3.7</a></p>
+    <p><a href="changelog.html" style="color: lightskyblue; text-decoration: solid underline;">Version 0.3.8</a></p>
   </div>
 </body>
 </html>

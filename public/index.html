@@ -128,14 +128,14 @@
       border-color: black;
       cursor: pointer;
       text-decoration: none;
+      font-style: normal;
+      font-weight: 600;
+      font-size: large;
     }
 
     .list-button-text {
       text-decoration: none;
       color: white;
-      font-style: normal;
-      font-weight: 600;
-      font-size: large;
     }
 
 
@@ -148,10 +148,9 @@
 
   <!-- Button on the top right that directs to list page -->
   <div>
-    <button class="list-page-button">
-      <!-- Remove hyperlink colour from link -->
-      <a class="list-button-text" href="list_of_matrixes.html">Saved Drawings</a>
-    </button>
+    <a class="list-button-text" href="list_of_matrixes.html">
+      <button class="list-page-button">Saved Drawings</button>
+    </a>
   </div>
 
   <!-- A coloured square to represent the currently selected colour -->
@@ -192,7 +191,7 @@
 
   <!-- Add version to bottom right corner of page -->
   <div style="position: fixed; bottom: 0; right: 0; margin: 10px;">
-    <p><a href="changelog.html" style="color: lightskyblue; text-decoration: solid underline;">Version 0.3.7</a></p>
+    <p><a href="changelog.html" style="color: lightskyblue; text-decoration: solid underline;">Version 0.3.8</a></p>
   </div>
 </body>
 </html>
