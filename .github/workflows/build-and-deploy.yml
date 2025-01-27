@@ -68,6 +68,4 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: deploy-frontend.yml
-          inputs: |
-            environment: aurora
-            version: ${{ steps.version.outputs.version }}
+          inputs: '{ "environment": "aurora", "version": "${{ steps.version.outputs.version }}" }'
