@@ -19,6 +19,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      actions: write
       #
     steps:
       - name: Checkout repository
