@@ -1,0 +1,47 @@
+name: Deploy Frontend to Environment
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to deploy to"
+        required: true
+        default: "aurora"
+        type: string
+      version:
+        description: "Version to deploy"
+        required: true
+        default: "latest"
+        type: string
+
+env:
+  STACK_NAME: "led-frontend"
+
+jobs:
+  deploy:
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Connect to Tailscale network
+      - name: Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:ci
+
+      # Deploy to environment through portainer
+      - name: Deploy
+        uses: datntdev0/actions-deploy-portainer@v0.1.0
+        with:
+          base-url: ${{ secrets.PORTAINER_BASE_URL }}
+          access-token: ${{ secrets.PORTAINER_ACCESS_TOKEN }}
+          endpoint-id: ${{ secrets.PORTAINER_ENDPOINT_ID }} # This is the environment to deploy to
+          stack-name: ${{ env.STACK_NAME }}
+          repository-url: https://github.com/${{ github.repository }}.git
+          repository-ref: ${{ github.ref }}
+          compose-file: .github/deploy/docker-compose.${{ inputs.environment }}.yml
+          env-json: "{}"
