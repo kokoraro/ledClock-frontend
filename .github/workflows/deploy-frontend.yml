@@ -35,13 +35,11 @@ jobs:
 
       # Deploy to environment through portainer
       - name: Deploy
-        uses: datntdev0/actions-deploy-portainer@v0.1.0
+        uses: carlrygart/portainer-stack-deploy@v1
         with:
-          base-url: ${{ secrets.PORTAINER_BASE_URL }}
-          access-token: ${{ secrets.PORTAINER_ACCESS_TOKEN }}
+          portainer-host: ${{ secrets.PORTAINER_BASE_URL }}
+          username: ${{ secrets.PORTAINER_USERNAME }}
+          password: ${{ secrets.PORTAINER_PASSWORD }}
           endpoint-id: ${{ secrets.PORTAINER_ENDPOINT_ID }} # This is the environment to deploy to
           stack-name: ${{ env.STACK_NAME }}
-          repository-url: https://github.com/${{ github.repository }}.git
-          repository-ref: ${{ github.ref }}
-          compose-file: .github/deploy/docker-compose.${{ inputs.environment }}.yml
-          env-json: "{}"
+          stack-definition: .github/deploy/docker-compose.${{ inputs.environment }}.yml
