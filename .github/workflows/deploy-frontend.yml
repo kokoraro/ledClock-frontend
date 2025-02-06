@@ -35,7 +35,7 @@ jobs:
 
       # Deploy to environment through portainer
       - name: Deploy
-        uses: carlrygart/portainer-stack-deploy@v1
+        uses: nvti/portainer-stack-deploy@main
         with:
           portainer-host: ${{ secrets.PORTAINER_BASE_URL }}
           username: ${{ secrets.PORTAINER_USERNAME }}
