@@ -43,3 +43,5 @@ jobs:
           endpoint-id: ${{ secrets.PORTAINER_ENDPOINT_ID }} # This is the environment to deploy to
           stack-name: ${{ env.STACK_NAME }}
           stack-definition: .github/deploy/docker-compose.${{ inputs.environment }}.yml
+          prune-stack: True
+          pull-image: False

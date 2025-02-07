@@ -1,6 +1,8 @@
+version: '3.7'
+
 services:
   frontend:
     image: ghcr.io/danielatanasovski/led-clock-frontend:latest
-    ports: 
+    ports:
       - "3000:3000"
     restart: always
