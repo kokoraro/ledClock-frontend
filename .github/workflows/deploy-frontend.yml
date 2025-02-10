@@ -43,5 +43,6 @@ jobs:
           endpoint-id: ${{ secrets.PORTAINER_ENDPOINT_ID }} # This is the environment to deploy to
           stack-name: ${{ env.STACK_NAME }}
           stack-definition: .github/deploy/docker-compose.${{ inputs.environment }}.yml
+          image: ghcr.io/danielatanasovski/led-clock-frontend:${{ inputs.version }}
           prune-stack: True
           pull-image: False
