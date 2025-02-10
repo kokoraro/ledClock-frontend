@@ -45,7 +45,11 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          tags: latest, ${{ steps.version.outputs.version }}
+          tags: |
+            # set latest tag for default branch
+            type=raw,value=latest,enable={{is_default_branch}}
+            # set version tag for all branches
+            type=raw,value=${{ steps.version.outputs.version }}
 
       # Build and push the Docker image to the Container registry. The `tags` and `labels` values are set to the outputs of the `meta` step.
       - name: Build and push Docker image
