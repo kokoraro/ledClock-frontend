@@ -5,3 +5,10 @@ services:
     ports:
       - "3000:3000"
     restart: always
+    networks:
+      - bridge
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"
