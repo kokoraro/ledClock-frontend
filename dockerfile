@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Create a new user called docker
-RUN addgroup -S docker && adduser -S docker -G docker 
+RUN addgroup -S docker && adduser -S docker -G docker
 USER docker
 
 # Set the working directory inside the container
@@ -31,4 +31,4 @@ COPY ./src/views ./build/views
 EXPOSE 3000
 
 # Start the application
-ENTRYPOINT ["sh", "-c", "exec node build/server.js"]
+ENTRYPOINT ["node build/server.js"]
