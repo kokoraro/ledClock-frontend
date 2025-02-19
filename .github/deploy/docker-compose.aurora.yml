@@ -12,6 +12,11 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
+    deploy:
+      update_config:
+        parallelism: 2
+        delay: 10s
+        failure_action: rollback
 
 networks:
   bridge:
