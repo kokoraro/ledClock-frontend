@@ -1,5 +1,7 @@
+# BUILD STAGE
+
 # Use the official Node.js image as the base image
-FROM node:20-alpine
+FROM node:20-alpine AS build
 
 # Create a new user called docker
 RUN addgroup -S docker && adduser -S docker -G docker
@@ -15,20 +17,37 @@ COPY --chown=docker:docker package*.json ./
 RUN npm install
 
 # Copy the rest of the project files to the working directory
-COPY ./public ./public
-COPY ./src ./src
-COPY ./tsconfig.json ./
+COPY --chown=docker:docker ./public ./public
+COPY --chown=docker:docker ./src ./src
+COPY --chown=docker:docker ./tsconfig.json ./
 
 RUN mkdir build
 
 # Build the TypeScript code
 RUN npm run build
 
-# Copy views folder into build
-COPY ./src/views ./build/views
+## RUN STAGE
+
+# Use the official Node.js image as the base image
+FROM node:20-alpine
+
+# Create a new user called docker
+RUN addgroup -S docker && adduser -S docker -G docker
+USER docker
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files to the working directory
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/build ./build
+COPY --chown=docker:docker ./src/views ./build/views
+
+# Install the project dependencies
+RUN npm install --omit=dev
 
 # Expose the port on which the application will run
 EXPOSE 3000
 
 # Start the application
-ENTRYPOINT ["node build/server.js"]
+ENTRYPOINT ["node", "build/server.js"]
