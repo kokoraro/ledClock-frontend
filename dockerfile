@@ -41,6 +41,7 @@ WORKDIR /app
 # Copy the package.json and package-lock.json files to the working directory
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/build ./build
+COPY --chown=docker:docker ./public ./public
 COPY --chown=docker:docker ./src/views ./build/views
 
 # Install the project dependencies
