@@ -1,7 +1,7 @@
 # BUILD STAGE
 
 # Use the official Node.js image as the base image
-FROM node:20-alpine AS build
+FROM node:23-alpine AS build
 
 # Create a new user called docker
 RUN addgroup -S docker && adduser -S docker -G docker
@@ -29,7 +29,7 @@ RUN npm run build
 ## RUN STAGE
 
 # Use the official Node.js image as the base image
-FROM node:20-alpine
+FROM node:23-alpine
 
 # Create a new user called docker
 RUN addgroup -S docker && adduser -S docker -G docker
